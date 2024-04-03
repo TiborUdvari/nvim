@@ -6,9 +6,9 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 	
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.6',
-	  -- or                            , branch = '0.1.x',
-	  requires = { {'nvim-lua/plenary.nvim'} }
+	  'nvim-telescope/telescope.nvim',
+    tag = '0.1.6',
+	  requires = { {'nvim-lua/plenary.nvim'} },
   }
 
   use { "catppuccin/nvim", as = "catppuccin" }
@@ -50,6 +50,9 @@ return require('packer').startup(function(use)
   --         {'L3MON4D3/LuaSnip'},     -- Required
   --     }
   -- }
+  --
+
+  -- use {'edluffy/hologram.nvim'}
 
   use {
       'numToStr/Comment.nvim',
@@ -62,6 +65,7 @@ return require('packer').startup(function(use)
     "Pocco81/auto-save.nvim",
     config = function()
       require("auto-save").setup {
+        enabled = false,
         -- your config goes here
         -- or just leave it empty :)
       }

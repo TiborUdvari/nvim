@@ -1,3 +1,4 @@
+local telescope = require("telescope")
 local builtin = require('telescope.builtin')
 
 vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
@@ -17,3 +18,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.wo.foldenable = false
   end,
 })
+
+-- More setup for later 
+-- telescope.setup({})
