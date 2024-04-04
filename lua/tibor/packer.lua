@@ -35,6 +35,19 @@ return require('packer').startup(function(use)
     }
   }
 
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
   -- use {
   --     'VonHeikemen/lsp-zero.nvim',
   --     branch = 'v2.x',
@@ -61,16 +74,17 @@ return require('packer').startup(function(use)
       end
   }
 
-  use({
-    "Pocco81/auto-save.nvim",
-    config = function()
-      require("auto-save").setup {
-        enabled = false,
-        -- your config goes here
-        -- or just leave it empty :)
-      }
-    end,
-  })
+  -- Might be slowing stuff down?
+  -- use({
+  --   "Pocco81/auto-save.nvim",
+  --   config = function()
+  --     require("auto-save").setup {
+  --       enabled = false,
+  --       -- your config goes here
+  --       -- or just leave it empty :)
+  --     }
+  --   end,
+  -- })
 
   use {
     'nvim-tree/nvim-tree.lua',

@@ -1,17 +1,9 @@
--- tibor
--- todo debug this
---- found in the folding user doc
--- Remap the [ ] keys
-
 -- Remap for nvim tree
-
--- global
 vim.api.nvim_set_keymap("n", "<C-h>", ":NvimTreeToggle<cr>", {silent = true, noremap = true})
 
 -- Remaps (mainly for my Swiss keyboard)
 vim.api.nvim_set_keymap('n', 'è', '[', {noremap = true})
 vim.api.nvim_set_keymap('n', '¨', ']', {noremap = true})
--- dead keys
 
 -- Folding
 -- vim.opt.foldmethod = "indent"

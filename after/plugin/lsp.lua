@@ -1,17 +1,12 @@
--- local lsp = require('lsp-zero').preset({})
---
--- lsp.on_attach(function(client, bufnr)
---   -- see :help lsp-zero-keybindings
---   -- to learn the available actions
---   lsp.default_keymaps({buffer = bufnr})
--- end)
-
 local lsp_zero = require('lsp-zero')
 
 lsp_zero.on_attach(function(client, bufnr)
   -- see :help lsp-zero-keybindings
   -- to learn the available actions
-  lsp_zero.default_keymaps({buffer = bufnr})
+  lsp_zero.default_keymaps({
+    buffer = bufnr,
+    preserve_mappings = false
+  })
 end)
 
 -- Handle setup with mason https://lsp-zero.netlify.app/v3.x/getting-started.html
@@ -43,8 +38,6 @@ require('mason-lspconfig').setup({
   },
 })
 
--- this sets up autocomplete stuff
-
 ---
 -- Autocompletion config
 ---
@@ -52,6 +45,10 @@ local cmp = require('cmp')
 local cmp_action = lsp_zero.cmp_action()
 
 cmp.setup({
+  preselect = 'item', 
+  completion = {
+    completeopt = 'menu,menuone,noinsert',
+  },
   mapping = cmp.mapping.preset.insert({
     -- `Enter` key to confirm completion
     ['<CR>'] = cmp.mapping.confirm({select = false}),
@@ -68,7 +65,6 @@ cmp.setup({
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
   })
 })
-
 
 --
 -- (Optional) Configure lua language server for neovim
