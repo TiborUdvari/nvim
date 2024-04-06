@@ -1,4 +1,4 @@
--- Only required if you have packer configured as `opt`
+-- Only required if you have packer configured as `opt`packer
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
@@ -74,6 +74,16 @@ return require('packer').startup(function(use)
       end
   }
 
+
+  use({
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  })
   -- Might be slowing stuff down?
   -- use({
   --   "Pocco81/auto-save.nvim",
