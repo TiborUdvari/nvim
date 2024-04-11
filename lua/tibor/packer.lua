@@ -29,11 +29,17 @@ return require('packer').startup(function(use)
       -- LSP Support
       {'neovim/nvim-lspconfig'},
       -- Autocompletion
+
       {'hrsh7th/nvim-cmp'},
       {'hrsh7th/cmp-nvim-lsp'},
-      {'L3MON4D3/LuaSnip'},
+      {'saadparwaiz1/cmp_luasnip'},
+      {'L3MON4D3/LuaSnip',
+        run = "make install_jsregexp"},
     }
   }
+
+  -- snippets
+  use "rafamadriz/friendly-snippets"
 
   use {
     "folke/which-key.nvim",
