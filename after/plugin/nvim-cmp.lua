@@ -5,12 +5,18 @@ local cmp = require('cmp')
 local cmp_action = lsp_zero.cmp_action()
 local cmp_format = require('lsp-zero').cmp_format({details = true})
 
+luasnip.snippets = {
+  all = {
+    luasnip.parser.parse_snippet("tib", "--hi tib"),
+  },
+}
+
 require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
   preselect = 'item',
   sources = {
-    {name = 'nvim_lsp'},
+    -- {name = 'nvim_lsp'},
     {name = 'luasnip'},
   },
   completion = {
