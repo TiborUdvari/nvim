@@ -16,7 +16,7 @@ require('luasnip.loaders.from_vscode').lazy_load()
 cmp.setup({
   preselect = 'item',
   sources = {
-    -- {name = 'nvim_lsp'},
+    {name = 'nvim_lsp'},
     {name = 'luasnip'},
   },
   completion = {
