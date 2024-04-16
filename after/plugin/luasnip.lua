@@ -41,7 +41,7 @@ ls.add_snippets("all", {
 
 ls.add_snippets("html", {
   s("tib-dlr", {
-    t('<script src="https://cdn.jsdelivr.net/npm/p5.dumblivereload@0.0.1/dist/p5dumbLiveReload.js"></script>')
+    t('<script src="https://cdn.jsdelivr.net/npm/p5.dumblivereload@0.0.3/dist/p5dumbLiveReload.js"></script>')
   }),
 })
 
