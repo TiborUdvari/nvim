@@ -1,14 +1,43 @@
 local ls = require("luasnip")
 local t = ls.text_node
 local s = ls.snippet
+local f = ls.function_node
 local i = ls.insert_node
 local fmt = require("luasnip.extras.fmt").fmt
 
--- ls.add_snippets("all", {
---   s("tib", {
---     t("//Hello tib")
---   }),
--- })
+-- utils
+function get_git_relative_path()
+  local handle = io.popen("git rev-parse --show-toplevel")
+  local git_root = handle:read("a")
+  handle:close()
+  git_root = string.gsub(git_root, "\n", "") -- remove trailing newline
+  local file_path = vim.api.nvim_buf_get_name(0)
+
+  if vim.startswith(file_path, git_root) then
+    local res = string.gsub(file_path, git_root, "")
+    return res
+  end
+
+  return file_path
+end
+
+-- keep history
+ls.setup({
+  keep_roots = true,
+  link_roots = true,
+  link_children = true,
+
+  update_events = "TextChanged,TextChangedI",
+  delete_check_events = "TextChanged",
+  enable_autosnippets = true,
+})
+
+ls.add_snippets("all", {
+  s("gitpath", {
+    i(1, ""),
+    f(get_git_relative_path, {}),
+  }),
+})
 
 ls.add_snippets("html", {
   s(
@@ -25,7 +54,7 @@ ls.add_snippets("html", {
     <meta property="og:title" content="{title}" />
     <meta property="og:description" content="{description}" />
     <meta property="og:image" content="https://www.tiborudvari.com/sketchbook/media/web/{media}.webp" />
-    <meta property="og:url" content="https://www.tiborudvari.com/sketchbook/{path}/" />
+    <meta property="og:url" content="https://www.tiborudvari.com/sketchbook{path}" />
     <meta property="og:type" content="website" />
 
     <meta name="twitter:card" content="summary_large_image">
@@ -37,7 +66,7 @@ ls.add_snippets("html", {
     {{
       "@context": "http://schema.org",
       "@type": "CreativeWork",
-      "name": "Hello AR Box",
+      "name": "{title}",
       "author": {{
         "@type": "Person",
         "name": "Tibor Udvari"
@@ -46,7 +75,7 @@ ls.add_snippets("html", {
       "keywords": "{tags}",
       "description": "{description}",
       "image": "https://www.tiborudvari.com/sketchbook/media/web/{media}.webp",
-      "url": "https://www.tiborudvari.com/sketchbook/{path}/",
+      "url": "https://www.tiborudvari.com/sketchbook{path}",
       "sameAs": "https://editor.p5js.org/TiborUdvari/sketches/{editorId}" 
     }}
     </script>
@@ -57,7 +86,7 @@ ls.add_snippets("html", {
         date = i(4, "DATE"),
         editorId = i(5, "EDITORID"),
         media = i(6, "MEDIA"),
-        path = i(7, "PATH"),
+        path = f(get_git_relative_path, {}),
       },
       {
         repeat_duplicates = true
