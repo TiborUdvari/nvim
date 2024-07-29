@@ -100,3 +100,29 @@ ls.add_snippets("html", {
     )
   ),
 })
+
+ls.add_snippets("html", {
+  s(
+    "tib-metasimple",
+    fmt([[
+    <title>{title}</title>
+    <meta name="description" content="{description}">
+    <meta name="author" content="Tibor Udvari">
+    <meta name="keywords" content="{tags}">
+    <meta name="date" content="{date}" scheme="YYYY-MM-DD">
+    <meta name="p5-editor-id" content="{editorId}">
+    <meta name="media-id" content="{media}">
+    ]], {
+        title = i(1, "TITLE"),
+        description = i(2, "DESCRIPTION"),
+        tags = i(3, "TAGS"),
+        date = i(4, "DATE"),
+        editorId = i(5, "EDITORID"),
+        media = i(6, "MEDIA"),
+      },
+      {
+        repeat_duplicates = true
+      }
+    )
+  ),
+})
