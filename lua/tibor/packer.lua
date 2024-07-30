@@ -3,8 +3,7 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-	
+
   use {
 	  'nvim-telescope/telescope.nvim',
     tag = '0.1.6',
@@ -16,6 +15,13 @@ return require('packer').startup(function(use)
   use {
 	  'nvim-treesitter/nvim-treesitter',
 	  run = ':TSUpdate'
+  }
+
+  use {
+    "stevearc/conform.nvim",
+    config = function()
+      require("conform").setup()
+    end,
   }
 
   use {

@@ -9,6 +9,7 @@ lsp_zero.on_attach(function(client, bufnr)
   })
 end)
 
+
 -- Handle setup with mason https://lsp-zero.netlify.app/v3.x/getting-started.html
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
