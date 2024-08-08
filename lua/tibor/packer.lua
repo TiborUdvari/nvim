@@ -13,6 +13,14 @@ return require('packer').startup(function(use)
   use { "catppuccin/nvim", as = "catppuccin" }
 
   use {
+    "danymat/neogen",
+    config = function()
+        require('neogen').setup {}
+    end,
+    tag = "*"
+  }
+
+  use {
 	  'nvim-treesitter/nvim-treesitter',
 	  run = ':TSUpdate'
   }

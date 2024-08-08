@@ -2,8 +2,9 @@
 vim.api.nvim_set_keymap("n", "<C-h>", ":NvimTreeToggle<cr>", {silent = true, noremap = true})
 
 -- Remaps (mainly for my Swiss keyboard)
-vim.api.nvim_set_keymap('n', 'è', '[', {noremap = true})
-vim.api.nvim_set_keymap('n', '¨', ']', {noremap = true})
+-- Handled at keyboard level now
+-- vim.api.nvim_set_keymap('n', 'è', '[', {noremap = true})
+-- vim.api.nvim_set_keymap('n', '¨', ']', {noremap = true})
 
 -- Folding
 -- vim.opt.foldmethod = "indent"
