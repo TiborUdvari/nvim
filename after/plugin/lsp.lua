@@ -16,12 +16,14 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require('mason').setup({})
+
 require('mason-lspconfig').setup({
-  ensure_installed = {'html', 'tsserver', 'astro'},
+  ensure_installed = {'html', 'tsserver', 'astro', 'wgsl_analyzer'},
   handlers = {
     lsp_zero.default_setup,
-
-    -- conf per thing
+    wgsl_analyzer = function ()
+      require'lspconfig'.wgsl_analyzer.setup({})
+    end,
     html = function()
       require('lspconfig').html.setup({
         capabilities = capabilities,
@@ -37,6 +39,13 @@ require('mason-lspconfig').setup({
       })
     end,
   },
+})
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.wgsl",
+  callback = function()
+    vim.bo.filetype = "wgsl"
+  end,
 })
 
 ---
