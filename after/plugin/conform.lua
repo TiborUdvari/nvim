@@ -5,6 +5,7 @@ require("conform").setup({
     lua = { "stylua" },
     python = { "isort", "black" },
     javascript = { "prettierd", "prettier", stop_after_first = true },
+    html = { "prettierd", stop_after_first = true }
   },
   async = true,
   lsp_fallback = true,
