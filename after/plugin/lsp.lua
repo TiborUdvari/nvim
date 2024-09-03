@@ -18,11 +18,14 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 require('mason').setup({})
 
 require('mason-lspconfig').setup({
-  ensure_installed = {'html', 'tsserver', 'astro', 'wgsl_analyzer'},
+  ensure_installed = {'html', 'tsserver', 'astro', 'wgsl_analyzer', 'glsl_analyzer'},
   handlers = {
     lsp_zero.default_setup,
     wgsl_analyzer = function ()
       require'lspconfig'.wgsl_analyzer.setup({})
+    end,
+    glsl_analyzer = function ()
+      require'lspconfig'.glsl_analyzer.setup{}
     end,
     html = function()
       require('lspconfig').html.setup({
@@ -46,6 +49,12 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   callback = function()
     vim.bo.filetype = "wgsl"
   end,
+})
+
+vim.filetype.add({
+  extension = {
+    vert = "glsl",
+  },
 })
 
 ---
